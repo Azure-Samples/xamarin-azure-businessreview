@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="1.1.2-preview0008" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Xam.Plugin.Media" Version="3.2.0.245-beta" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.1.1" />
+    <PackageReference Include="MonkeyCache.FileStore" Version="0.1.0.1-beta" />
+    <PackageReference Include="System.Net.Http.Formatting.Extension" Version="5.2.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="Services\" />
+    <Folder Include="Cells\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\Mock\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\RestaurantListPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\BusinessListPage.xaml.cs">
+      <DependentUpon>BusinessListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\BusinessReviewsPage.xaml.cs">
+      <DependentUpon>BusinessReviewsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\EditReviewPage.xaml.cs">
+      <DependentUpon>EditReviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Cells\VideoPreviewCellView.xaml.cs">
+      <DependentUpon>VideoPreviewCellView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reviewer.SharedModels\Reviewer.SharedModels.csproj" />
+    <ProjectReference Include="..\Reviewer.Services\Reviewer.Services.csproj" />
+  </ItemGroup>
+</Project>

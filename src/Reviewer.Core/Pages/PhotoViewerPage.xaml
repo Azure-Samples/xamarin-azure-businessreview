@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Reviewer.Core.PhotoViewerPage"
+    Title="Photo">
+    <ContentPage.Content>
+        <Image Source="{Binding PhotoUrl}" BackgroundColor="Black" />
+    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Done" Clicked="Done_Clicked" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

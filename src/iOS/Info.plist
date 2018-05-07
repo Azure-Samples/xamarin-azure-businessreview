@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Reviewer</string>
+	<key>CFBundleName</key>
+	<string>Reviewer</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.microsoft.Reviewer</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.microsoft.Reviewer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msaladc26e3b-2568-4007-810d-6cc94e7416de</string>
+			</array>
+		</dict>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Take photos for the review</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Pick videos for the review</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record video for the review</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick photos for review</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Pick photos from gallery for the review</string>
+	<key>CFBundleVersion</key>
+	<string>5</string>
+</dict>
+</plist>

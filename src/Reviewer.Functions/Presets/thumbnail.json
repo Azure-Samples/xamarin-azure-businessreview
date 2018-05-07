@@ -1,0 +1,193 @@
+﻿{
+
+  "Version": 1.0,
+
+  "Codecs": [
+
+    {
+
+      "KeyFrameInterval": "00:00:02",
+
+      "SceneChangeDetection": "true",
+
+      "H264Layers": [
+
+        {
+
+          "Profile": "Auto",
+
+          "Level": "auto",
+
+          "Bitrate": 4500,
+
+          "MaxBitrate": 4500,
+
+          "BufferWindow": "00:00:05",
+
+          "Width": 1280,
+
+          "Height": 720,
+
+          "ReferenceFrames": 3,
+
+          "EntropyMode": "Cabac",
+
+          "AdaptiveBFrame": true,
+
+          "Type": "H264Layer",
+
+          "FrameRate": "0/1"
+
+
+
+        }
+
+      ],
+
+      "Type": "H264Video"
+
+    },
+
+    {
+
+      "JpgLayers": [
+
+        {
+
+          "Quality": 90,
+
+          "Type": "JpgLayer",
+
+          "Width": 640,
+
+          "Height": 360
+
+        }
+
+      ],
+
+      "Start": "{Best}",
+
+      "Type": "JpgImage"
+
+    },
+
+    {
+
+      "PngLayers": [
+
+        {
+
+          "Type": "PngLayer",
+
+          "Width": 640,
+
+          "Height": 360
+
+        }
+
+      ],
+
+      "Start": "00:00:01",
+
+      "Step": "00:00:10",
+
+      "Range": "00:00:58",
+
+      "Type": "PngImage"
+
+    },
+
+    {
+
+      "BmpLayers": [
+
+        {
+
+          "Type": "BmpLayer",
+
+          "Width": 640,
+
+          "Height": 360
+
+        }
+
+      ],
+
+      "Start": "10%",
+
+      "Step": "10%",
+
+      "Range": "90%",
+
+      "Type": "BmpImage"
+
+    },
+
+    {
+
+      "Channels": 2,
+
+      "SamplingRate": 48000,
+
+      "Bitrate": 128,
+
+      "Type": "AACAudio"
+
+    }
+
+  ],
+
+  "Outputs": [
+
+    {
+
+      "FileName": "{Basename}_{Index}{Extension}",
+
+      "Format": {
+
+        "Type": "JpgFormat"
+
+      }
+
+    },
+
+    {
+
+      "FileName": "{Basename}_{Index}{Extension}",
+
+      "Format": {
+
+        "Type": "PngFormat"
+
+      }
+
+    },
+
+    {
+
+      "FileName": "{Basename}_{Index}{Extension}",
+
+      "Format": {
+
+        "Type": "BmpFormat"
+
+      }
+
+    },
+
+    {
+
+      "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
+
+      "Format": {
+
+        "Type": "MP4Format"
+
+      }
+
+    }
+
+  ]
+
+}

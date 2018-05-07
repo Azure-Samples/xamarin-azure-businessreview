@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:Reviewer.Core"
+    x:Class="Reviewer.Core.EditReviewPage"
+    Title="Review">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToImageSource x:Key="stringToImageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+           <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions> 
+            <TableView Intent="Form" HasUnevenRows="true" >
+                <TableView.Root>
+                    <TableSection Title="Author">
+                        <EntryCell Label="Your Name:" Text="{Binding Review.Author}" IsEnabled="false" />
+                    </TableSection>
+                    <TableSection Title="When Did You Go Here?">
+                        <ViewCell>
+                            <StackLayout Margin="15, 7" Orientation="Horizontal">
+                               <Label Text="Date:" VerticalTextAlignment="Center" />
+                               <DatePicker Date="{Binding Review.Date}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" /> 
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Give It A Rating!!">
+                        <ViewCell>
+                            <StackLayout Margin="15,7" Orientation="Horizontal">
+                                <Label Text="Stars:" VerticalTextAlignment="Center" />
+                                <Picker HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" SelectedItem="{Binding Review.Rating}">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:Int32}">
+                                            <x:Int32>1</x:Int32>
+                                            <x:Int32>2</x:Int32>
+                                            <x:Int32>3</x:Int32>
+                                            <x:Int32>4</x:Int32>
+                                            <x:Int32>5</x:Int32>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Review It!">
+                        <ViewCell Height="100">
+                            <Editor Text="{Binding Review.ReviewText}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Photos">
+                        <ViewCell Height="100">
+                           <local:HorizontalList x:Name="photoList" ItemsSource="{Binding Photos}" ListOrientation="Horizontal" ColumnSpacing="10">
+                                <local:HorizontalList.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding .}" HeightRequest="100" WidthRequest="100" />
+                                    </DataTemplate>
+                                </local:HorizontalList.ItemTemplate>
+                            </local:HorizontalList> 
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="Videos">
+                        <ViewCell Height="100">
+                            <local:HorizontalList x:Name="videoList" ItemsSource="{Binding Videos}" ListOrientation="Horizontal" ColumnSpacing="10">
+                                <local:HorizontalList.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding .}" HeightRequest="100" WidthRequest="100" />
+                                    </DataTemplate>
+                                </local:HorizontalList.ItemTemplate>
+                            </local:HorizontalList>
+                        </ViewCell>
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding IsNotBusy}" Grid.Row="1" Style="{StaticResource ButtonOutline}" Margin="15,0,15,5" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="2" />
+        </Grid>
+    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Photo" Command="{Binding TakePhotoCommand}" />
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

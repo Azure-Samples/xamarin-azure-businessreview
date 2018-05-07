@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Reviewer.Core.PhotoPreviewCellView" HeightRequest="80" WidthRequest="80">
+    <ContentView.Content>
+        <Frame HasShadow="false" Padding="2" BackgroundColor="{StaticResource Accent}" CornerRadius="2" HeightRequest="80" WidthRequest="80" MinimumWidthRequest="80" MinimumHeightRequest="80">
+            <Image Source="{Binding .}" HeightRequest="78" WidthRequest="78" Aspect="AspectFill" />
+        </Frame>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Reviewer.Core.BusinessReviewsPage"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding Reviews}" x:Name="reviewList" CachingStrategy="RecycleElement">
+               <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding ReviewText}" Detail="{Binding Author}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate> 
+            </ListView>
+            <Button 
+                Text="Add Review" 
+                IsEnabled="{Binding IsNotBusy}"
+                IsVisible="{Binding IsLoggedIn}"
+                Grid.Row="1" 
+                Style="{StaticResource ButtonOutline}" 
+                Margin="10,0" 
+                x:Name="addNewReview" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               Grid.RowSpan="2" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

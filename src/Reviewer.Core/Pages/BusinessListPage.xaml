@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:cells="clr-namespace:Reviewer.Core"
+    x:Class="Reviewer.Core.BusinessListPage"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <Grid>
+            <ListView x:Name="allBusList"
+                      ItemsSource="{Binding Businesses}"
+                      HasUnevenRows="true"
+                      CachingStrategy="RecycleElement">
+                <ListView.SeparatorColor>
+                    <OnPlatform x:TypeArguments="Color" Android="Transparent" />
+                </ListView.SeparatorColor>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <cells:BusinessCell  /> 
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" 
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

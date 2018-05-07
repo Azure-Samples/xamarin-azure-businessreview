@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Reviewer.Core.AccountPage"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <Grid Padding="10" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="225" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="1" Source="ic_bitcommunity"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Aspect="AspectFit" />
+
+            <Label Grid.Row="2"
+                   Text="{Binding Info}"
+                   VerticalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+
+            <StackLayout Grid.Row="3" Spacing="0">
+                <BoxView HeightRequest="5" Color="{StaticResource Accent}" />
+                <BoxView HeightRequest="5" Color="{StaticResource SecondaryAccent}" />
+                <BoxView HeightRequest="5" Color="{StaticResource Primary}" />
+            </StackLayout>
+
+            <Button Grid.Row="4"
+                    Margin="0,50,0,0"
+                    VerticalOptions="Start"
+                    Command="{Binding SignInCommand}"
+                    IsVisible="{Binding NotLoggedIn}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    BackgroundColor="{StaticResource PrimaryDark}" TextColor="White"
+                    Text="Sign In or Up"
+                    HorizontalOptions="FillAndExpand" />
+
+            <ListView ItemsSource="{Binding Reviews}" x:Name="authorReviewList" Grid.Row="4"
+                      IsVisible="{Binding LoggedIn}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <TextCell Text="{Binding ReviewText}" Detail="{Binding BusinessName}" /> 
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Grid.RowSpan="5" />
+        </Grid>
+    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sign Out" IsEnabled="{Binding LoggedIn}" Command="{Binding SignOutCommand}" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

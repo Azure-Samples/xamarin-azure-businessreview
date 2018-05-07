@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Reviewer.Core.BusinessCellView">
+    <ContentView.Content>
+        <Frame Padding="0">
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="8"/>
+                </OnPlatform>
+            </Frame.Margin>
+            <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="x:Boolean">
+                    <On Platform="Android" Value="true"/>
+                    <On Platform="iOS" Value="false"/>
+                    <On Platform="UWP" Value="true"/>
+                </OnPlatform>
+            </Frame.HasShadow>
+            <Frame.OutlineColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="iOS" Value="Transparent"/>
+                </OnPlatform>
+            </Frame.OutlineColor>
+            <Frame.BackgroundColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="iOS" Value="Transparent"/>
+                </OnPlatform>
+            </Frame.BackgroundColor>
+            <Grid Padding="16,5" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView 
+                    Color="{StaticResource PrimaryDark}" 
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    HeightRequest="66" 
+                    WidthRequest="66" />
+                <Label Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="66"
+                    HeightRequest="66"
+                    TextColor="White"
+                    Text="{Binding FirstInitial}"
+                    FontSize="64"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center">
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,-20,0,0" />
+                        </OnPlatform>
+                    </Label.Margin>
+                </Label>
+
+                <StackLayout Grid.Column="1"
+                             VerticalOptions="Center"
+                             Spacing="0">
+                    <Label Text="{Binding Name}" />
+                    <Label Text="{Binding Address.City}" />
+                    <Label Text="{Binding Phone}" />
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

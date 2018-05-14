@@ -10,14 +10,16 @@ The app showcases how to use several Azure offerings in the context of a mobile 
 
 This project demonstrates the following:
 
-* Xamarin.Forms
-* MVVM architecture
-* Azure AD B2C
-* Azure App Services
-* Azure Cosmos DB
-* Azure Functions
-* Azure Storage
-* Azure Media Services
+* [Xamarin.Forms](https://msou.co/bh9)
+* [MVVM architecture](https://msou.co/bia)
+* [Azure AD B2C](https://msou.co/bib)
+* [Azure App Services](https://msou.co/bic)
+* [Azure Cosmos DB](https://msou.co/bid)
+* [Azure Functions](https://msou.co/bie)
+* [Azure Storage](https://msou.co/big)
+  * [Azure BLOB Storage](https://msou.co/bif)
+  * [Azure Message Queues](https://msou.co/bih)
+* [Azure Media Services](https://msou.co/bii)
 
 ## Getting Started
 
@@ -26,7 +28,7 @@ To get started, clone this repository and then follow the directions in the Quic
 ### Prerequisites
 
 * Visual Studio or Visual Studio for Mac.
-* Azure subscription (create a free one here.)
+* Azure subscription ([create a free one here](https://msou.co/bij).)
 
 ### Installation
 
@@ -36,7 +38,7 @@ To get started, clone this repository and then follow the directions in the Quic
 
 ### Quickstart
 
-In order to run this full sample, an Azure subscription is required. You can create a free subscription here.
+In order to run this full sample, an Azure subscription is required. You can [create a free subscription here](https://msou.co/bij).
 
 > Note: When creating the Azure offerings below - use the same Resource Group. And when given the option to pick a Storage Account - pick the same one for each.
 
@@ -44,28 +46,28 @@ Once you have a subscription, you will need to create several Azure offerings:
 
 #### Azure Storage
 
-1. Create an Azure Storage Account.
+1. [Create an Azure Storage Account.](https://msou.co/bik)
 
 #### Azure AD B2C
 
 Setting up Azure AD B2C is the most involved portion.
 
-1. First you need to create the tenant.
-1. Next you need to create your application.
+1. First you need to [create the tenant](https://msou.co/bil).
+1. Next you need to [create your application](https://msou.co/bim).
     1. Within the application, create a scope, and name it `rvw_all`.
-1. Next you need to add any identity providers.
-1. Then you need to create a sign-up/sign-in policy.
+1. Next you need to add any [identity providers](https://msou.co/bin).
+1. Then you need to create a sign-up/sign-in [policy](https://msou.co/bio).
 
 #### Azure Cosmos DB
 
-1. Create an Azure Cosmos DB - SQL API - instance.
-1. Create a database named: `BuildReviewer`
-1. Create a collection named: `Businesses`
-1. Create a collection named: `Reviews`
+1. [Create an Azure Cosmos DB - SQL API - instance](https://msou.co/bip).
+    1. Create a database named: `BuildReviewer`
+1. [Create a collection](https://msou.co/biq) named: `Businesses`
+1. [Create a collection](https://msou.co/biq) named: `Reviews`
 
 #### Azure App Service
 
-1. Create the Azure App Service.
+1. Create the [Azure App Service](https://msou.co/bir).
 1. Configure the `Reviewer.WebAPI` project's `appsettings.json` file to match the following:
 
     ```language-javascript
@@ -91,7 +93,7 @@ Setting up Azure AD B2C is the most involved portion.
 
 #### Azure Media Services (AMS)
 
-1. Create an Azure Media Services instance.
+1. [Create an Azure Media Services instance](https://msou.co/bis).
 1. Use the same Azure Storage account as created above.
 1. [Start the default streaming endpoint](https://msou.co/bh3).
 1. Create an [Azure AD application](https://msou.co/bh5) for it.
@@ -99,7 +101,7 @@ Setting up Azure AD B2C is the most involved portion.
 
 #### Azure Functions
 
-1. Create an Azure Function App.
+1. [Create an Azure Function App](https://msou.co/bit).
 1. Use the same Azure Storage account as created above.
 1. Create the following __Application Settings__ keys with values:
     1. `AMSAADTenantDomain`: The Azure AD domain you created for the AMS app in step 4 in the Azure Media Services setup above.
@@ -128,7 +130,3 @@ Finally there are a couple of settings that you need to configure in the Xamarin
 There are a couple things to note when running the demo.
 
 1. The Xamarin.Forms app needs to run with an Android version that supports custom tabs.
-
-## Resources
-
-There will be links here eventually to relevant documentation for further reading.

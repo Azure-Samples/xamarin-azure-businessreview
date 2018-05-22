@@ -1,3 +1,9 @@
+---
+services: functions, ad b2c, cosmos db, storage, media services
+platforms: dotnet, xamarin
+author: masoucou
+---
+
 # The Business Reviewer
 
 ![logo](art/ic_bitcommunity.png)

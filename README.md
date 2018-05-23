@@ -1,7 +1,7 @@
 ---
 services: functions, ad b2c, cosmos db, storage, media services
 platforms: dotnet, xamarin
-author: masoucou
+author: codemillmatt
 ---
 
 # The Business Reviewer

@@ -1,5 +1,5 @@
 ---
-services: functions, active-directory-b2c, cosmos db, storage, media services
+services: functions, active-directory-b2c, cosmos-db, storage, media-services
 platforms: dotnet, xamarin
 author: codemillmatt
 ---

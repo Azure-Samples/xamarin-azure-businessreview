@@ -7,6 +7,7 @@ using Microsoft.Azure.Documents;
 using System.Linq.Expressions;
 using Microsoft.Azure.Documents.Linq;
 using System.Linq;
+using System.Net.Http;
 
 namespace Reviewer.Services
 {
@@ -18,19 +19,28 @@ namespace Reviewer.Services
 
         DocumentClient client;
 
-        public void Initialize()
+        public async Task Initialize()
         {
             if (client != null)
                 return;
 
             client = new DocumentClient(new Uri(APIKeys.CosmosEndpointUrl), APIKeys.CosmosAuthKey);
+
+            var db = new Database { Id = databaseName };
+            await client.CreateDatabaseIfNotExistsAsync(db);
+
+            var reviewCollection = new DocumentCollection() { Id = reviewCollectionName };
+            var businessCollection = new DocumentCollection() { Id = businessCollectionName };
+
+            await client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(databaseName), reviewCollection);
+            await client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(databaseName), businessCollection);
         }
 
         public async Task<List<Business>> GetBusinesses()
         {
             try
             {
-                Initialize();
+                await Initialize();
 
                 var businesses = new List<Business>();
 
@@ -57,7 +67,7 @@ namespace Reviewer.Services
 
         public async Task<List<Review>> GetReviewsForBusiness(string businessId)
         {
-            Initialize();
+            await Initialize();
 
             var reviews = new List<Review>();
 
@@ -79,7 +89,7 @@ namespace Reviewer.Services
 
         public async Task<List<Review>> GetReviewsByAuthor(string authorId)
         {
-            Initialize();
+            await Initialize();
 
             var reviews = new List<Review>();
 
@@ -101,7 +111,7 @@ namespace Reviewer.Services
 
         public async Task InsertReview(Review review)
         {
-            Initialize();
+            await Initialize();
 
             await client.CreateDocumentAsync(
                 UriFactory.CreateDocumentCollectionUri(databaseName, reviewCollectionName),
@@ -110,7 +120,7 @@ namespace Reviewer.Services
 
         public async Task UpdateReview(Review review)
         {
-            Initialize();
+            await Initialize();
 
             var reviewUri = UriFactory.CreateDocumentUri(databaseName, reviewCollectionName, review.Id);
 
@@ -125,7 +135,7 @@ namespace Reviewer.Services
 
         public async Task InsertBusiness(Business business)
         {
-            Initialize();
+            await Initialize();
 
             await client.CreateDocumentAsync(
                 UriFactory.CreateDocumentCollectionUri(databaseName, businessCollectionName),
@@ -134,7 +144,7 @@ namespace Reviewer.Services
 
         public async Task UpdateBusiness(Business business)
         {
-            Initialize();
+            await Initialize();
 
             var businessUri = UriFactory.CreateDocumentUri(databaseName, businessCollectionName, business.Id);
             var existingBusiness = (await client.ReadDocumentAsync<Business>(businessUri)).Document;

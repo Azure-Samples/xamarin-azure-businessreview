@@ -7,6 +7,11 @@ namespace Reviewer.SharedModels
 {
     public class Business : ObservableObject
     {
+        public Business()
+        {
+            Address = new Address { Id = Guid.NewGuid().ToString() };
+        }
+
         string id;
         [JsonProperty("id")]
         public string Id { get => id; set => SetProperty(ref id, value); }
@@ -28,6 +33,6 @@ namespace Reviewer.SharedModels
         public List<Review> RecentReviews { get => recentReviews; set => SetProperty(ref recentReviews, value); }
 
         [JsonIgnore()]
-        public string FirstInitial { get => Name.Substring(0, 1); }
+        public string FirstInitial { get => Name?.Substring(0, 1); }
     }
 }

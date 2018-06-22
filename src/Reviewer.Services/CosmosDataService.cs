@@ -122,5 +122,24 @@ namespace Reviewer.Services
 
             await client.ReplaceDocumentAsync(reviewUri, review);
         }
+
+        public async Task InsertBusiness(Business business)
+        {
+            Initialize();
+
+            await client.CreateDocumentAsync(
+                UriFactory.CreateDocumentCollectionUri(databaseName, businessCollectionName),
+                business);
+        }
+
+        public async Task UpdateBusiness(Business business)
+        {
+            Initialize();
+
+            var businessUri = UriFactory.CreateDocumentUri(databaseName, businessCollectionName, business.Id);
+            var existingBusiness = (await client.ReadDocumentAsync<Business>(businessUri)).Document;
+
+            await client.ReplaceDocumentAsync(businessUri, business);
+        }
     }
 }

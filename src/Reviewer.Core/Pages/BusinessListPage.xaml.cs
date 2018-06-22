@@ -23,19 +23,31 @@ namespace Reviewer.Core
             vm.Title = "Businesses";
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
+            addNewReview.Clicked += HandleAddNewClicked;
             allBusList.ItemSelected += listItemSelected;
             vm.RefreshCommand.Execute(null);
+
+            if (!vm.IsLoggedIn)
+                await vm.CheckLoginStatus();
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
 
+            addNewReview.Clicked -= HandleAddNewClicked;
             allBusList.ItemSelected -= listItemSelected;
+        }
+
+        async void HandleAddNewClicked(object sender, EventArgs eventArgs)
+        {
+            var editPage = new NavigationPage(new EditBusinessPage());
+
+            await Navigation.PushModalAsync(editPage);
         }
 
         protected async void listItemSelected(object sender, SelectedItemChangedEventArgs args)

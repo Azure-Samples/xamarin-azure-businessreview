@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Reviewer.Core.EditBusinessPage">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TableView Intent="Form">
+                <TableSection Title="Name">
+                    <EntryCell Label="Business Name" Text="{Binding Business.Name}" />
+                </TableSection> 
+                <TableSection Title="Address">
+                    <EntryCell Label="Address Line 1" Text="{Binding Business.Address.Line1}" />
+                    <EntryCell Label="City" Text="{Binding Business.Address.City}" />
+                    <EntryCell Label="State" Text="{Binding Business.Address.State}" />
+                    <EntryCell Label="Zip" Text="{Binding Business.Address.Zip}" />
+                </TableSection>
+                <TableSection Title="Phone">
+                    <EntryCell Label="Business Phone" Text="{Binding Business.Phone}" /> 
+                </TableSection>
+            </TableView>
+
+            <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding IsNotBusy}" Grid.Row="1" Style="{StaticResource ButtonOutline}" Margin="15,0,15,5" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="2" />
+        </Grid>
+    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

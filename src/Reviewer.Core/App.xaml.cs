@@ -5,10 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Reviewer.Services;
 
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Reviewer.Core
 {
@@ -23,9 +19,7 @@ namespace Reviewer.Core
             DependencyService.Register<IStorageService, StorageService>();
             DependencyService.Register<IDataService, CosmosDataService>();
 
-            //DependencyService.Register<IAPIService, MockAPIService>();
             DependencyService.Register<IAPIService, WebAPIService>();
-
 
             var tabbedPage = new TabbedPage();
 

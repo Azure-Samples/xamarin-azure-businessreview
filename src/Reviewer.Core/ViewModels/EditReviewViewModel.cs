@@ -49,6 +49,7 @@ namespace Reviewer.Core
         public EditReviewViewModel(Review theReview)
         {
             Photos = new List<ImageSource>();
+            Videos = new List<ImageSource>();
 
             Review = theReview;
 

@@ -7,5 +7,7 @@ namespace Reviewer.Services
     public interface IDataService
     {
         Task<List<Business>> GetBusinesses();
+        Task InsertBusiness(Business business);
+        Task UpdateBusiness(Business business);
     }
 }

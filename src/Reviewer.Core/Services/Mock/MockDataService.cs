@@ -55,6 +55,16 @@ namespace Reviewer.Core
             return await Task.FromResult(new List<Business> { business1, business2 });
         }
 
+        public Task InsertBusiness(Business business)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateBusiness(Business business)
+        {
+            throw new NotImplementedException();
+        }
+
         Review GetReview(string businessId)
         {
             var review = new Review

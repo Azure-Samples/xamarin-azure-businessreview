@@ -61,7 +61,7 @@ Setting up Azure AD B2C is the most involved portion.
 1. First you need to [create the tenant](https://msou.co/bil).
 1. Next you need to [create your application](https://msou.co/bim).
     1. Within the application, create a scope, and name it `rvw_all`.
-1. Next you need to add any [identity providers](https://msou.co/bin).
+1. Next you need to add any [identity providers](https://msou.co/bmm).
 1. Then you need to create a sign-up/sign-in [policy](https://msou.co/bio).
 
 #### Azure Cosmos DB

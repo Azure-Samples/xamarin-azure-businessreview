@@ -1,7 +1,18 @@
 ---
-services: functions, active-directory-b2c, cosmos-db, storage, media-services
-platforms: dotnet, xamarin
-author: codemillmatt
+page_type: sample
+languages:
+  - csharp
+products:
+  - dotnet
+  - xamarin
+  - azure
+  - azure-functions
+  - azure-active-directory
+  - azure-cosmos-db
+  - azure-storage
+  - azure-media-services
+description: "This is a Xamarin app that gives users the opportunity login and create reviews for businesses and or restaurants."
+name: "The Business Reviewer (Xamarin)"
 ---
 
 # The Business Reviewer

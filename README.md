@@ -40,7 +40,7 @@ This project demonstrates the following:
 
 ## Getting Started
 
-To get started, clone this repository and then follow the directions in the Quick Start section below to setup the Azure infrastructure. Once done, you will be able to run the app.
+To get started clone this repository and then follow the directions in the Quick Start section below to setup the Azure infrastructure. Once done, you will be able to run the app.
 
 ### Prerequisites
 

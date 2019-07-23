@@ -87,7 +87,7 @@ Setting up Azure AD B2C is the most involved portion.
 1. Create the [Azure App Service](https://msou.co/bir).
 1. Configure the `Reviewer.WebAPI` project's `appsettings.json` file to match the following:
 
-    ```language-javascript
+    ```json
     "AzureAdB2C":
     {
         "Instance": "https://login.microsoftonline.com/tfp/",

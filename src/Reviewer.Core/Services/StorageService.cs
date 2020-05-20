@@ -2,12 +2,13 @@
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.Auth;
 using MonkeyCache.FileStore;
 using Xamarin.Forms;
 using Reviewer.Services;
 using System.Threading;
 using System.Diagnostics;
+using Azure.Storage.Blobs;
+using System.Collections.Generic;
 
 namespace Reviewer.Core
 {
@@ -27,17 +28,18 @@ namespace Reviewer.Core
             {
                 var writeCredentials = await ObtainStorageCredentials(StoragePermissionType.Write);
 
-                var csa = new Microsoft.WindowsAzure.Storage.CloudStorageAccount(writeCredentials, APIKeys.StorageAccountName, APIKeys.StorageAccountUrlSuffix, true);
+                var sasUri = $"https://{APIKeys.StorageAccountName}.blob.core.windows.net/" + writeCredentials;
+                var blobServiceClient = new BlobServiceClient(new Uri(sasUri));
 
-                var blobClient = csa.CreateCloudBlobClient();
-
-                var container = blobClient.GetContainerReference(APIKeys.PhotosContainerName);
+                var container = blobServiceClient.GetBlobContainerClient(APIKeys.PhotosContainerName);
 
                 var extension = isVideo ? "mp4" : "png";
-                var blockBlob = container.GetBlockBlobReference($"{Guid.NewGuid()}.{extension}");
+                var blockBlob = container.GetBlobClient($"{Guid.NewGuid()}.{extension}");
 
-                blockBlob.Metadata.Add("reviewId", reviewId);
-                await blockBlob.UploadFromStreamAsync(blobContent, null, null, null, progressUpdater, new CancellationToken());
+                IDictionary<string, string> metadata = new Dictionary<string, string>();
+                metadata.Add("reviewId", reviewId);
+                blockBlob.SetMetadata(metadata);
+                await blockBlob.UploadAsync(blobContent, null, null, null, progressUpdater);
 
                 blobAddress = blockBlob.Uri;
             }
@@ -53,14 +55,14 @@ namespace Reviewer.Core
 
         #region Helpers
 
-        async Task<StorageCredentials> ObtainStorageCredentials(StoragePermissionType permissionType)
+        async Task<string> ObtainStorageCredentials(StoragePermissionType permissionType)
         {
             var functionService = DependencyService.Get<IAPIService>();
 
             var cacheKey = permissionType.ToString();
 
             if (Barrel.Current.Exists(cacheKey) && !Barrel.Current.IsExpired(cacheKey))
-                return new StorageCredentials(Barrel.Current.Get<string>(cacheKey));
+                return  Barrel.Current.Get<string>(cacheKey);
 
             string storageToken = null;
             switch (permissionType)
@@ -95,9 +97,9 @@ namespace Reviewer.Core
             return endTimeSpan;
         }
 
-        StorageCredentials StuffCredentialsInBarrel(string storageToken, string cacheKey)
+        string StuffCredentialsInBarrel(string storageToken, string cacheKey)
         {
-            var credentials = new StorageCredentials(storageToken);
+            var credentials = storageToken;
             var expireIn = GetExpirationSpan(storageToken);
 
             Barrel.Current.Add<string>(cacheKey, storageToken, expireIn);
